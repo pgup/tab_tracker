@@ -8,15 +8,17 @@
     "lint": "./node_modules/.bin/eslint **/*.js"
   },
   "keywords": [],
-  "author": "", 
+  "author": "",
   "license": "ISC",
   "dependencies": {
     "body-parser": "^1.18.2",
     "cors": "^2.8.4",
     "eslint": "^4.15.0",
     "express": "^4.16.2",
-    "morgan": "^1.9.0"
-  }, 
+    "morgan": "^1.9.0",
+    "sequelize": "^4.31.2",
+    "sqlite3": "^3.1.8"
+  },
   "devDependencies": {
     "eslint-config-standard": "^11.0.0-beta.0",
     "eslint-plugin-import": "^2.8.0",
