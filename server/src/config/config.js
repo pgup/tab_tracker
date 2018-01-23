@@ -1,3 +1,5 @@
+// import { process } from 'joi/lib/errors';
+
 module.exports = {
   port: process.env.PORT || 8081,
   db: {
@@ -11,4 +13,7 @@ module.exports = {
 
     }
   }
+  /* authentication: {
+    jwtSecret: process.env.JWT_SECRET || 'secret'
+  } */
 }
