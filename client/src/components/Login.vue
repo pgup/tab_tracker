@@ -21,6 +21,7 @@
      <br>
      <v-text-field
             label="password"
+            type="password"
             v-model="password"
       ></v-text-field> 
      <!-- <input 
@@ -58,12 +59,14 @@ export default {
     }
   },
     methods:{
-    async login(){
+    async login () {
        try{
-        await AuthenticationService.login({
+        const response = await AuthenticationService.login({
           email: this.email,
           password: this.password
       })
+      this.$store.dispatch('setToken', response.data.token)
+      this.$store.dispatch('setUser', response.data.user)
       } catch (error) {
         this.error = error.response.data.error
       }
