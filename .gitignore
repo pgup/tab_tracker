@@ -3,3 +3,4 @@ server/node_modules/
 server/tabtracker.sqlite
 server/tabtracker.sqlite
 server/tabtracker.sqlite
+.gitignore

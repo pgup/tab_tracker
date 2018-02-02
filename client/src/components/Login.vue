@@ -3,10 +3,10 @@
  
 <v-layout column>
   <v-flex xs6 offset-xs3>
-    <panel title="Register">
-    <form
+    <panel title="Login">
+   <!--  <form
       name="tab-tracker-form"
-      autocomplete="off">
+      autocomplete="off"> -->
       <v-text-field
            label="email"
            v-model="email"
@@ -33,7 +33,7 @@
          @click="login" dark > 
          Register
          </v-btn>
-    </form>
+    <!-- </form> -->
     </panel>
   </v-flex>
 </v-layout> 
