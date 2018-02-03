@@ -13,9 +13,10 @@ module.exports = {
       })
     }
   },
+  // had a problem i getting the error below becaus i did song.creat not create
   async post (req, res) {
     try {
-      const song = await Song.creat(req.body)
+      const song = await Song.create(req.body)
       res.send(song)
     } catch (err) {
       res.status(500).send({
