@@ -42,4 +42,7 @@ export default {
 .btn__content{
   color: white; 
 } */
+.danger-alert{
+  color: red;
+}
 </style>
