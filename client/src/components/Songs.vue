@@ -7,7 +7,11 @@
           slot="action"
           :to="{name: 'songs-create'}"> -->
             
-              <v-btn slot="action" to="/songs/create" class="cyan accent-2" light medium absolute right middle fab>
+              <v-btn 
+              slot="action" 
+              to="/songs/create" 
+              class="cyan accent-2" 
+              light medium absolute right middle fab>
                     <v-icon>add</v-icon>
               </v-btn>
          <!-- </router-link> -->
@@ -29,8 +33,13 @@
                          {{song.genre}}
                      </div> 
 
-                     <v-btn class = "cyan"
-                         @click="navigateTo({name: 'song', params: {songId: song.id}})" > 
+                     <v-btn dark class = "cyan"
+                         @click="navigateTo({
+                             name: 'song', 
+                             params: {
+                                 songId: song.id
+                                 }
+                            })" > 
                          view
                      </v-btn>  
 
@@ -62,6 +71,11 @@ export default {
    },
    async mounted () {
        this.songs = (await SongsService.index()).data
+   },
+   methods: {
+       navigateTo (route) {
+           this.$router.push(route)
+       }
    }
 
 }
