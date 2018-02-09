@@ -45,20 +45,7 @@
             v-model="song.youtubeId"
       ></v-text-field>
 
-      <v-text-field
-            label="lyrics"
-            required
-            :rules="[required]"
-            v-model="song.lyrics"
-      ></v-text-field>
-
-      <v-text-field
-            label="tab"
-            required
-            :rules="[required]"
-            v-model="song.tab"
-      ></v-text-field>
-
+     
       
       </panel>
       </v-flex>
@@ -66,19 +53,19 @@
       <v-flex xs8>
       <panel title="Song Structure">
         <v-text-field
-            label="Lyrics"
+            label="lyrics"
             multi-line
             required
             :rules="[required]"
-            v-model="song.Lyrics"
+            v-model="song.lyrics"
       ></v-text-field>
 
       <v-text-field
-            label="Tab"
+            label="tab"
             multi-line
             required
             :rules="[required]"
-            v-model="song.Tab"
+            v-model="song.tab"
       ></v-text-field>
         </panel>
 
