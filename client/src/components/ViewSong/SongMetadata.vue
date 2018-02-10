@@ -1,8 +1,6 @@
 
 <template>
- <v-layout>
-     <v-flex xs6>
-          <panel title = "Songs">
+ <panel title = "Songs Metadata">
        
              <v-layout>
                  <v-flex xs6>
@@ -26,39 +24,19 @@
                 </v-flex>
              </v-layout>
     </panel> 
-     </v-flex>
-     <v-layout>
-     </v-layout>
-     <v-flex xs6 class="ml-2">
-         <panel title="tabs">
-            <textarea
-            readonly
-            v-model="song.tab"
-            ></textarea>
-        </panel>
-     </v-flex>
-   
-  </v-layout>
 </template>
 
 <script>
-import SongsService from "@/services/SongsService";
 import Panel from "@/components/Panel";
 
 export default {
-  data() {
-    return {
-      song: {}
-    };
-  },
-  async mounted() {
-    const songId = this.$store.state.route.params.songId;
-    this.song = (await SongsService.show(songId)).data;
-  },
-  components: {
-    Panel
-  }
-};
+   props:[
+       'song'
+   ],
+   components: {
+       Panel
+   }
+}
 </script>
 
 <style scoped>
