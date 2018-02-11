@@ -74,8 +74,8 @@
       </div>
 
         <v-btn class = "cyan"
-         @click="create" > 
-         Create Song
+         @click="save" > 
+         save Song
          </v-btn>
 
         </v-flex>
@@ -108,7 +108,7 @@ export default {
        Panel
    },
    methods: {
-       async create() {
+       async save() {
            // call API
            this.error = null
            const areAllFieldsFilledIn = Object
@@ -118,16 +118,31 @@ export default {
                   this.error = 'Please fill in all the required fields.'
                   return
             }
-
-           try {
-           await SongsService.post(this.song)
-           this.$router.push({
-                 name: 'songs'
+            
+            const songId = this.$store.state.route.params.songId;
+            try {
+            await SongsService.put(this.song)
+            this.$router.push({
+                 name: 'song',
+                 params: {
+                       songId: songId
+                 }
            })
+            } catch (err) {
+                  console.log(err)
+            }
+          
+       }
+   },
+   async mounted () {
+          try {
+
+            const songId = this.$store.state.route.params.songId;
+            this.song = (await SongsService.show(songId)).data;
+
            }catch (err) {
                console.log(err)
            }
-       }
    }
 }
 </script>
