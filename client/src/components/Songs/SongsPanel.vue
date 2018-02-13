@@ -1,7 +1,6 @@
 
 <template>
- <v-layout column>
-  <v-flex xs6 offset-xs3>
+ 
      <panel title = "Songs">
         <!--  <router-link
           slot="action"
@@ -52,18 +51,15 @@
              
          </div>
      </panel>    
-  </v-flex>
-</v-layout> 
 
 </template>
 
 <script>
+
 import SongsService from '@/services/SongsService'
-import Panel from '@/components/Panel'
+
 export default {
-   components: {
-       Panel 
-   },
+   
    data () {
        return {
            songs: null
@@ -75,6 +71,14 @@ export default {
    methods: {
        navigateTo (route) {
            this.$router.push(route)
+       }
+   },
+   watch: {
+       '$route.query.search': {
+            immediate: true,
+          async handler (value) {
+               this.songs = (await SongsService.index(value)).data
+           }
        }
    }
 

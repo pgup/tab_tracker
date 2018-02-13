@@ -28,7 +28,8 @@
        v-model="password"
        placeholder="password"/> -->
      <br>
-     <div class = "error" v-html= "error" />
+     <!-- <div class = "error" v-html= "error" /> danger alert is globall css style-->
+      <div class = "danger-alert" v-html= "error" />
        <v-btn class = "cyan"
          @click="login" dark > 
          Register
@@ -48,7 +49,7 @@
 
 //import AuthenticationService from 'services/AuthenticationService.js'
 import AuthenticationService from '@/services/AuthenticationService'
-import Panel from '@/components/Panel'
+
 export default {
    data () {
     return {
@@ -66,14 +67,14 @@ export default {
       })
       this.$store.dispatch('setToken', response.data.token)
       this.$store.dispatch('setUser', response.data.user)
+      this.$router.push({
+        name: 'songs'
+      })
       } catch (error) {
         this.error = error.response.data.error
       }
     } 
-  },
-  components: {
-       Panel 
-   } 
+  } 
 /*
   watch: {
     email(value){
@@ -89,9 +90,9 @@ export default {
 }
 </script>
 <style scoped>
-.error {
+/* .error {
  color: red
-}
+} */
 
 </style>
 

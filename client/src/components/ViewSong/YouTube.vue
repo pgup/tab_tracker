@@ -11,14 +11,11 @@
 
 <script>
 import VueYouTubeEmbed from 'vue-youtube-embed'
-import Panel from "@/components/Panel";
+
 export default {
     props: [
         'youtubeId'
-    ],
-    components: {
-        Panel
-    }
+    ]
 }
 </script>
 
