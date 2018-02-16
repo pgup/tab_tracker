@@ -27,19 +27,19 @@
                      </v-btn>
 
                      <v-btn 
-                     v-if="isUserLoggedIn && !isBookmarked"
+                     v-if="isUserLoggedIn && !bookmark"
                      dark 
                      class = "cyan"
-                         @click="unbookmark" > 
-                         Bookmark
+                         @click="SetAsBookmark" > 
+                         Set As Bookmark 
                      </v-btn>
 
                      <v-btn 
-                     v-if="isUserLoggedIn && isBookmarked"
+                     v-if="isUserLoggedIn && bookmark"
                      dark 
                      class = "cyan"
-                         @click="bookmark" > 
-                         Unbookmark
+                         @click="UnsetAsBookmark" > 
+                         Unset As Bookmark
                      </v-btn>   
 
                 </v-flex>
@@ -63,7 +63,7 @@ export default {
    ],
    data () {
        return {
-           isBookmarked: false
+           bookmark: null
        }
    },
    computed: {
@@ -71,44 +71,62 @@ export default {
            'isUserLoggedIn'
        ])
    },
-   async mounted () {
+   watch: {
+        async song () {
+            if (!this.isUserLoggedIn){
+           return
+       }
+       try {
+       this.bookmark = (await BookmarksService.index({
+           songId: this.song.id,
+           userId: this.$store.state.user.id
+       })).data
+       
+       } catch (err) {
+            console.log(err)
+    }
+   }
+  },
+   
+   /* async mounted () {
        if (!this.isUserLoggedIn){
            return
        }
        try {
-       const bookmark = (await BookmarksService.index({
+       this.bookmark = (await BookmarksService.index({
            songId: this.song.id,
            userId: this.$store.state.user.id
        })).data
-       this.isBookmarked = !!bookmark
+       
        } catch (err) {
             console.log(err)
        }
-   },
+   }, */
    methods:{
-       navigateTo (route) {
-           this.$router.push(route)
-       },
-       async bookmark () {
+      
+
+       async SetAsBookmark () {
            try {
-           await BookmarksService.post({
-           songId: this.song.id,
-           userId: this.$store.state.user.id
-       })
+              this.bookmark = (await BookmarksService.post({
+               songId: this.song.id,
+               userId: this.$store.state.user.id
+        })).data
+      } catch (err) {
+        console.log(err)
+      }
+    },
+    
+      async  UnsetAsBookmark () {
+         try {
+           await BookmarksService.delete(this.bookmark.id)
+           this.bookmark = null
            } catch (err) {
                 console.log(err)
            }
         },
-      async  unbookmark () {
-         try {
-           await BookmarksService.delete({
-           songId: this.song.id,
-           userId: this.$store.state.user.id
-       })
-           } catch (err) {
-                console.log(err)
-           }
-        } 
+         navigateTo (route) {
+           this.$router.push(route)
+       } 
    }
 }
 </script>
@@ -143,6 +161,7 @@ textarea {
     padding: 40px;
 }
 </style>
+
 
 
 
