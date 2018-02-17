@@ -73,10 +73,12 @@ export default {
    },
    watch: {
         async song () {
+            console.log("1")
             if (!this.isUserLoggedIn){
            return
        }
        try {
+           console.log("2")
        this.bookmark = (await BookmarksService.index({
            songId: this.song.id,
            userId: this.$store.state.user.id
