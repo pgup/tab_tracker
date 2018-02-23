@@ -10,7 +10,7 @@
                 {{props.item.title}}
             </td>
             <td class="text-xs-right">
-                {{props.item.artists}}
+                {{props.item.artist}}
             </td>
         </template>
          </v-data-table>
@@ -41,7 +41,14 @@ export default {
                descending: true
            },
            bookmarks: [
-               
+               {
+                   title: 'hellow world ',
+                   artist: 'Testing1'
+               },
+               {
+                   title: 'hellow world2 ',
+                   artist: 'Testing2'
+               }
            ]
 
        }   
@@ -56,14 +63,28 @@ export default {
         if (this.isUserLoggedIn) {
             this.bookmarks = (await BookmarksService.index({
                 userId: this.user.id
-            })).adata
+            })).data
         }
     }
+   
 }
 </script>
 
 <style scoped>
-</style>
 
+/*  computed: {
+       ...mapState([
+           'isUserLoggedIn',
+           'user'
+       ])
+   },
+    async mounted () {
+        if (this.isUserLoggedIn) {
+            this.bookmarks = (await BookmarksService.index({
+                userId: this.user.id
+            })).adata
+        }
+    } */
+</style>
 
 
