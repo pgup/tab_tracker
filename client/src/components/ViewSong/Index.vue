@@ -60,7 +60,6 @@ export default {
       //userId: this.user.id
     })
     }
-    
   },
   components: {
    

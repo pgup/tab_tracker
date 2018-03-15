@@ -37,18 +37,18 @@ export default {
                }
            ],
            pagination: {
-               sortBy: 'date',
+               sortBy: 'createdAt', // change 3
                descending: true
            },
-           bookmarks: [
-               {
+           bookmarks: [ // change 4
+               /* {
                    title: 'hellow world ',
                    artist: 'Testing1'
                },
                {
                    title: 'hellow world2 ',
                    artist: 'Testing2'
-               }
+               } */
            ]
 
        }   

@@ -26,7 +26,7 @@
                          {{song.title}}
                      </div> 
                      <div class="song-title">
-                         {{song.artis}}
+                         {{song.artist}}
                      </div> 
                      <div class="song-genra">
                          {{song.genre}}

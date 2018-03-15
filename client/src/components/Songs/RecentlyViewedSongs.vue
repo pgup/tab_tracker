@@ -37,10 +37,20 @@ export default {
                }
            ],
            pagination: {
-               sortBy: 'date',
+               sortBy: 'createdAt', //change 1
                descending: true
            },
-           histories: []
+           histories: //change 2
+            [
+                /* {
+                   text: 'Title',
+                   value: 'title'
+               },
+               {
+                   text: 'Artist',
+                   value: 'artist'
+               } */
+            ]
 
        }   
     },
@@ -51,11 +61,9 @@ export default {
        ])
    },
     async mounted () {
-        if (this.isUserLoggedIn) {
-            this.histories = (await SongHistoryService.index({
-                userId: this.user.id
-            })).data
-        }
+        if (this.isUserLoggedIn) {  //change 3
+      this.histories = (await SongHistoryService.index()).data
+    }
     }
    
 }
